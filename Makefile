@@ -9,6 +9,8 @@ LOCKFILE = requirements/lock.txt
 help:
 	@echo "make init"
 	@echo "    prepare development environment, use only once"
+	@echo "make deinit"
+	@echo "    remove all traces of virtual environment"
 	@echo "make reqs"
 	@echo "make lock"
 	@echo "    upgrade, lock, then install the Python dependencies in requirements/*.in"
@@ -25,6 +27,10 @@ init: venv lock
 	pip install --requirement $(LOCKFILE)
 	@ pre-commit install --hook-type pre-commit || echo 'Install `pre-commit`!'
 	@ pre-commit install --hook-type pre-push
+
+.PHONY: deinit
+deinit: clean-venv
+	pyenv local --unset
 
 venv: .python-version
 
