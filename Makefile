@@ -16,6 +16,8 @@ help:
 	@echo "    run static checkers (i.e., flake8, bandit, safety, etc.)"
 	@echo "make clean-py"
 	@echo "    cleanup compiled Python files"
+	@echo "make clean-venv"
+	@echo "    remove virtual environment"
 
 
 .PHONY: init
@@ -57,3 +59,7 @@ clean-py:
 		-exec rm -vrf {} + 2>/dev/null \
 			| wc -l \
 			| xargs printf 'Removed %d compiled Python files\n'
+
+.PHONY: clean-venv
+clean-venv:
+	pyenv uninstall --force $(PROJECT_NAME)
