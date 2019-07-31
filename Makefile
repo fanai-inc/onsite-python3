@@ -18,6 +18,7 @@ help:
 	@echo "    cleanup compiled Python files"
 
 
+.PHONY: init
 init: venv lock
 	pip install --requirement $(LOCKFILE)
 	@ pre-commit install --hook-type pre-commit || echo 'Install `pre-commit`!'
