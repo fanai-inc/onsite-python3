@@ -19,6 +19,7 @@ help:
 
 
 init: venv lock
+	pip install --requirement $(LOCKFILE)
 	@ pre-commit install --hook-type pre-commit || echo 'Install `pre-commit`!'
 	@ pre-commit install --hook-type pre-push
 
