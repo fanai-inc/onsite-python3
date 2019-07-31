@@ -1,4 +1,5 @@
-PROJECT_NAME = onsite-python3
+REPO_NAME = onsite-python3
+PROJECT_NAME = myproj
 PYTHON_VERSION = 3.7.4
 
 REQUIREMENTS = $(wildcard requirements/*.in)
@@ -23,7 +24,7 @@ help:
 
 
 .PHONY: init
-init: venv lock
+init: venv lock develop
 	pip install --upgrade pip
 	pip install --requirement $(LOCKFILE)
 	@ pre-commit install --hook-type pre-commit || echo 'Install `pre-commit`!'
@@ -33,12 +34,17 @@ init: venv lock
 deinit: clean-venv
 	pyenv local --unset
 
+.PHONY: develop
+develop: venv
+	python setup.py develop
+
+
 venv: .python-version
 
 .python-version:
 	pyenv install --skip-existing $(PYTHON_VERSION)
-	pyenv virtualenv $(PYTHON_VERSION) $(PROJECT_NAME)
-	pyenv local $(PROJECT_NAME)
+	pyenv virtualenv $(PYTHON_VERSION) $(REPO_NAME)
+	pyenv local $(REPO_NAME)
 
 .PHONY: lock
 lock: $(LOCKFILE)
@@ -56,6 +62,12 @@ $(LOCKFILE): $(REQUIREMENTS)
 .PHONY: lint
 lint:
 	pre-commit run --all-files
+
+
+.PHONY: test tests
+tests: test
+test: venv
+	pytest
 
 
 .PHONY: clean-py
