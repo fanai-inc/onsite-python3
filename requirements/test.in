@@ -3,4 +3,5 @@ pytest
 pytest-cov
 pytest-flask
 pytest-mock
+pytest-ordering
 pytest-vcr
