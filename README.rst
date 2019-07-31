@@ -32,19 +32,18 @@ Installing
 #. Run ``make init`` within the project to setup your Python virtual
    environment and Git hooks.
 
+Dependencies
+============
 
-Installed
----------
-
-Development Dependencies
-""""""""""""""""""""""""
+Development
+-----------
 
 * pip-tools_ to manage locked dependencies
 
 .. _pip-tools: https://github.com/jazzband/pip-tools
 
-Static Checker Dependencies
-"""""""""""""""""""""""""""
+Static Checking
+---------------
 
 * bandit_ is a security linter
 * flake8_ is the minimum required linter
@@ -58,15 +57,15 @@ Static Checker Dependencies
 .. _pylint: https://www.pylint.org/
 .. _safety: https://pyup.io/safety/
 
-Testing Dependencies
-""""""""""""""""""""
+Testing
+-------
 
 * pytest_ is our preferred testing framework
 
 .. _pytest: https://pytest.org/en/latest/
 
-Runtime Dependencies
-""""""""""""""""""""
+Runtime
+-------
 
 * flask_ is a WSGI-based, microframework for web applications
 
