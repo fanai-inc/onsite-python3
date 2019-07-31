@@ -1,0 +1,5 @@
+bandit  # security linter
+flake8  # linter
+pre-commit  # Git commit hooks
+pylint  # linter
+safety  # security linter

@@ -1,0 +1,3 @@
+ipython  # interpreter
+pdbpp  # debugger
+pip-tools  # requirements management
