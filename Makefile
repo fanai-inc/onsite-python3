@@ -12,6 +12,8 @@ help:
 	@echo "    prepare development environment, use only once"
 	@echo "make deinit"
 	@echo "    remove all traces of virtual environment"
+	@echo "make develop"
+	@echo "    setup project for development"
 	@echo "make reqs"
 	@echo "make lock"
 	@echo "    upgrade, lock, then install the Python dependencies in requirements/*.in"
