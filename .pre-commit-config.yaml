@@ -1,0 +1,36 @@
+exclude: '^$'
+fail_fast: false
+repos:
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: v1.1.1
+    hooks:
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-yaml
+        exclude: (?x)^(helm-charts/.*/templates/.*\.yaml)$
+        args: [--allow-multiple-documents]
+      - id: debug-statements
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: flake8
+      - id: mixed-line-ending
+      - id: requirements-txt-fixer
+        files: requirements.*\.in
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        language: python
+        entry: bandit --configfile bandit.yaml
+        pass_filenames: true
+        types: [file]
+        files: .*\.py
+      - id: safety
+        name: safety
+        language: python
+        entry: safety check -r requirements/lock.txt
+        pass_filenames: false
+        types: [file]
+        files: requirements.*\.txt
