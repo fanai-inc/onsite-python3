@@ -1,0 +1,4 @@
+exclude_dirs:
+- tests/
+skips:
+- B101  # We do not run python in optimized mode
