@@ -24,6 +24,7 @@ help:
 
 .PHONY: init
 init: venv lock
+	pip install --upgrade pip
 	pip install --requirement $(LOCKFILE)
 	@ pre-commit install --hook-type pre-commit || echo 'Install `pre-commit`!'
 	@ pre-commit install --hook-type pre-push
