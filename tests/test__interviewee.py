@@ -1,6 +1,7 @@
 import pytest
 
 
+@pytest.mark.first
 def test__twitter_users(client, dbsession, models):
     # GIVEN 1,000 Twitter users exist in the database
     NUM_TWITTER_USERS = 1_000
@@ -20,6 +21,7 @@ def test__twitter_users(client, dbsession, models):
     assert all(isinstance(id_, int) for id_ in resp.json), resp.json
 
 
+@pytest.mark.second
 def test__followers_count(client, dbsession, models):
     # GIVEN a Twitter user with 1,000 followers
     NUM_FOLLOWERS = 1_000
@@ -46,7 +48,7 @@ def test__followers_count(client, dbsession, models):
     assert resp.json == NUM_FOLLOWERS, resp.json
 
 
-@pytest.mark.first
+@pytest.mark.third
 def test__first_requirement(client, dbsession, models):
     # GIVEN at least 2 public figures with shared followers
     NUM_LEFT, NUM_SHARED, NUM_RIGHT = 400, 982, 523
@@ -89,7 +91,7 @@ def test__first_requirement(client, dbsession, models):
     assert resp.json == len(shared_users)
 
 
-@pytest.mark.second
+@pytest.mark.fourth
 def test__second_requirement(client):
     # GIVEN
     pass
@@ -99,7 +101,7 @@ def test__second_requirement(client):
     # THEN
 
 
-@pytest.mark.third
+@pytest.mark.fifth
 def test__third_requirement(client):
     # GIVEN
     pass
