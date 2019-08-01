@@ -71,6 +71,10 @@ tests: test
 test: venv
 	pytest
 
+.PHONY: debug
+debug:
+	pytest --pdb --capture=no --no-print-logs
+
 
 .PHONY: clean-py
 clean-py:
