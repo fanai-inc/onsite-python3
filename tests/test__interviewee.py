@@ -7,8 +7,6 @@ def test__twitter_users(client, dbsession, models):
     for idx in range(NUM_TWITTER_USERS):
         dbsession.add(models.TwitterUser(
             screen_name=f'handle_{idx}',
-            followers_count=0,
-            friends_count=0,
             is_public_figure=True,
         ))
     dbsession.commit()
@@ -27,19 +25,12 @@ def test__followers_count(client, dbsession, models):
     NUM_FOLLOWERS = 1_000
     public_figure = models.TwitterUser(
         screen_name='first_public_figure',
-        followers_count=0,
-        friends_count=0,
         is_public_figure=True,
     )
     dbsession.add(public_figure)
     dbsession.flush()
     users = [
-        models.TwitterUser(
-            screen_name=f'handle_{idx}',
-            followers_count=0,
-            friends_count=0,
-            is_public_figure=False,
-        )
+        models.TwitterUser(screen_name=f'handle_{idx}')
         for idx in range(NUM_FOLLOWERS)
     ]
     dbsession.add_all(users)

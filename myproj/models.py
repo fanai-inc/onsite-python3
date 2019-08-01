@@ -41,9 +41,9 @@ class TwitterUser(Base):
 
     id = Column(Integer, primary_key=True)
     screen_name = Column(String, unique=True)
-    followers_count = Column(Integer)
-    friends_count = Column(Integer)
-    is_public_figure = Column(Boolean)
+    followers_count = Column(Integer, default=0)
+    friends_count = Column(Integer, default=0)
+    is_public_figure = Column(Boolean, default=False)
 
     # many to many TwitterUser<->TwitterUser
     followers = orm.relationship(
