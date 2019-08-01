@@ -70,3 +70,19 @@ Runtime
 * flask_ is a WSGI-based, microframework for web applications
 
 .. _flask: https://palletsprojects.com/p/flask/
+
+
+--------
+The Test
+--------
+
+There are some failing tests that need some code to run.  Run the tests
+and complete the program.::
+
+    make test
+
+
+You can also run the tests such that you'll get a pdb interpreter for an
+error or ``pdb.set_trace()`` call::
+
+    make debug
