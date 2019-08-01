@@ -2,8 +2,8 @@ from . import resources
 
 
 RESOURCES = {
-    '/twitter/ids': resources.TwitterIDs
-
+    '/twitter/ids': resources.TwitterIDs,
+    '/twitter/<int:id>/followers/count': resources.TwitterFollowersCount,
 }
 
 
