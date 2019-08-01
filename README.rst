@@ -76,11 +76,18 @@ Runtime
 The Test
 --------
 
+Warmup
+======
+
+To start, open up `<docs/questions.rst>`_, read, and answer.
+
+Worksets
+========
+
 There are some failing tests that need some code to run.  Run the tests
 and complete the program.::
 
     make test
-
 
 You can also run the tests such that you'll get a pdb interpreter for an
 error or ``pdb.set_trace()`` call::
