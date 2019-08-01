@@ -47,13 +47,46 @@ def test__followers_count(client, dbsession, models):
 
 
 @pytest.mark.first
-def test__first_requirement(client):
-    # GIVEN
-    pass
+def test__first_requirement(client, dbsession, models):
+    # GIVEN at least 2 public figures with shared followers
+    NUM_LEFT, NUM_SHARED, NUM_RIGHT = 400, 982, 523
+    left, right = (
+        models.TwitterUser(
+            screen_name=f'public_figure_{idx}',
+            is_public_figure=True,
+        ) for idx in range(2)
+    )
+    dbsession.add_all([left, right])
+    dbsession.flush()
+    left_users = [
+        models.TwitterUser(screen_name=f'left_follower_{idx}')
+        for idx in range(NUM_LEFT)
+    ]
+    shared_users = [
+        models.TwitterUser(screen_name=f'shared_follower_{idx}')
+        for idx in range(NUM_SHARED)
+    ]
+    right_users = [
+        models.TwitterUser(screen_name=f'right_follower_{idx}')
+        for idx in range(NUM_RIGHT)
+    ]
+    dbsession.add_all(left_users)
+    dbsession.add_all(shared_users)
+    dbsession.add_all(right_users)
+    for user in left_users:
+        left.follow(user)
+    for user in shared_users:
+        left.follow(user)
+        right.follow(user)
+    for user in right_users:
+        right.follow(user)
 
     # WHEN
+    resp = client.get(f'/twitter/followers/intersect/{left.id}/{right.id}')
+    assert resp.status_code == 200
 
     # THEN
+    assert resp.json == len(shared_users)
 
 
 @pytest.mark.second
