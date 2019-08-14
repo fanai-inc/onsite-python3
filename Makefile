@@ -49,7 +49,7 @@ venv: .python-version
 
 .python-version:
 	pyenv install --skip-existing $(PYTHON_VERSION)
-	pyenv virtualenv $(PYTHON_VERSION) $(REPO_NAME)
+	pyenv virtualenv --force $(PYTHON_VERSION) $(REPO_NAME)
 	pyenv local $(REPO_NAME)
 
 .PHONY: lock
